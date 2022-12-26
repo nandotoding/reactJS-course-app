@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Container} from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
 
 export const StyledContainer = styled(Container)`
   margin-top: 30px;
@@ -9,4 +9,8 @@ export const StyledContainer = styled(Container)`
 
 export const StyledTitle = styled.h1`
     margin-bottom: 20px;
+`
+
+export const StyledButton = styled(Button)`
+  margin: 5px;
 `

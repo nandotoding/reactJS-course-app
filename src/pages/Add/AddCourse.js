@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Form, FormControl, Button, Container, FormLabel, FormGroup} from "react-bootstrap";
-import FormInput from "../../components/forminput";
+import FormInput from "../../components/FormInput";
 import useAddCourseState from "./useAddCourseState";
-import {StyledContainer} from "./style";
+import {StyledButton, StyledContainer} from "./style";
 import {StyledTitle} from "./style";
 
 const FORM_LIST = [
@@ -14,8 +14,13 @@ const FORM_LIST = [
     {label: "Duration", type: "text", placeholder: "Enter course duration"}
 ];
 
-const AddCourse = () => {
+const AddCourse = ({onNavigate, onGetData}) => {
     const {getter, setter} = useAddCourseState();
+
+    const submitForm = () => {
+        onGetData(getter);
+        onNavigate('/');
+    }
 
     return (
         <StyledContainer>
@@ -25,8 +30,10 @@ const AddCourse = () => {
                     <FormInput label={item.label} type={item.type} value={getter[index]} onChage={setter[index]} placeholder={item.placeholder}/>
                 ))}
             </Form>
+            <StyledButton onClick={submitForm}>Submit</StyledButton>
+            <StyledButton onClick={() => onNavigate('/')}>Cancel</StyledButton>
         </StyledContainer>
-    )
+    );
 };
 
 export default AddCourse;
